@@ -1,5 +1,5 @@
 import numpy as np
-from FRBS_Multi_Queue_WRR import FRBS_Multi_Queue_WRR
+from FRBS.FRBS_with_ANFIS_call import FRBS_WRR
 
 def federated_aggregation(wrr_weight1_node1, wrr_weight2_node1, wrr_weight1_node2, wrr_weight2_node2):
  
@@ -49,8 +49,8 @@ def Multi_Queue_Tandem_Sim(X1_node1, X2_node1, fuzzy, federated=False):
             print(".", end="")
             Qr1_norm_node1 = Qr1_node1[i - 1] / Qsize
             Qr2_norm_node1 = Qr2_node1[i - 1] / Qsize
-            new_wrr_weight1_node1, new_wrr_weight2_node1, total_tokens_node1 = FRBS_Multi_Queue_WRR(
-                Qr1_norm_node1, Qr2_norm_node1, wrr_weight1_node1, wrr_weight2_node1)
+            new_wrr_weight1_node1, new_wrr_weight2_node1, total_tokens_node1 = FRBS_WRR(
+                Qr1_norm_node1, Qr2_norm_node1, wrr_weight1_node1, wrr_weight2_node1,anfis=True)
 
             # Atualizar pesos WRR para as filas do nó 1
             wrr1_vector_node1[i] = new_wrr_weight1_node1
@@ -84,7 +84,7 @@ def Multi_Queue_Tandem_Sim(X1_node1, X2_node1, fuzzy, federated=False):
             perda2_node1[i] = Qr2_node1[i] - Qsize
             Qr2_node1[i] = Qsize
 
-        # **Saída das filas do Nó 1 alimenta as filas do Nó 2**
+        # Saída das filas do Nó 1 alimenta as filas do Nó 2
         X1_node2_input = tx1_node1[i]  # Saída da Fila 1 do Nó 1 vira entrada da Fila 1 do Nó 2
         X2_node2_input = tx2_node1[i]  # Saída da Fila 2 do Nó 1 vira entrada da Fila 2 do Nó 2
 
@@ -92,7 +92,7 @@ def Multi_Queue_Tandem_Sim(X1_node1, X2_node1, fuzzy, federated=False):
         if fuzzy == 1:
             Qr1_norm_node2 = Qr1_node2[i - 1] / Qsize
             Qr2_norm_node2 = Qr2_node2[i - 1] / Qsize
-            new_wrr_weight1_node2, new_wrr_weight2_node2, total_tokens_node2 = FRBS_Multi_Queue_WRR(
+            new_wrr_weight1_node2, new_wrr_weight2_node2, total_tokens_node2 = FRBS_WRR(
                 Qr1_norm_node2, Qr2_norm_node2, wrr_weight1_node2, wrr_weight2_node2)
 
             # Atualizar pesos WRR para as filas do nó 2

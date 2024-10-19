@@ -103,8 +103,8 @@ def cdfplot(data, linestyle, label):
 
 cdfplot(BO1_node1_f, '-', 'Fuzzy (Queue 1 - Node 1)')
 cdfplot(BO2_node1_f, '-', 'Fuzzy (Queue 2 - Node 1)')
-cdfplot(BO1_node1_ff, '*', 'Fed Fuzzy (Queue 1 - Node 1)')
-cdfplot(BO2_node1_ff, '*', 'Fed Fuzzy (Queue 2 - Node 1)')
+cdfplot(BO1_node1_ff, '-.', 'Fed Fuzzy (Queue 1 - Node 1)')
+cdfplot(BO2_node1_ff, '-.', 'Fed Fuzzy (Queue 2 - Node 1)')
 cdfplot(BO1_node1_s, '--', 'Static (Queue 1 - Node 1)')
 cdfplot(BO2_node1_s, '--', 'Static (Queue 2 - Node 1)')
 
